@@ -1,5 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>ALANGAR – All Cloth Varieties | Sulur, Coimbatore</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>const savedTheme=localStorage.getItem('alangar-theme');if(savedTheme==='light'||savedTheme==='dark')document.documentElement.dataset.theme=savedTheme;</script>
 <style>
 :root{--bg:#fffdf9;--ink:#222;--mut:#6d6759;--gold:#b8975a;--ivory:#f6f0e4;--line:#e6dcc6;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17150f;--ink:#f3ecdc;--mut:#b2a98f;--ivory:#221f16;--line:#3a3524;--card:#1d1a12}}
@@ -74,7 +75,7 @@ footer b{color:#e9d9b4}footer a{display:block;opacity:.85}
 <header><button class="burger" onclick="mn.style.display=mn.style.display=='block'?'none':'block'" aria-label="Menu">☰</button>
 <a class="logo" href="#/">ALANGAR<small>ALL CLOTH VARIETIES · SULUR</small></a>
 <nav><a href="#/">HOME</a><a href="#/shop">SHOP</a><a href="#/shop/Men">MEN</a><a href="#/shop/Women">WOMEN</a><a href="#/shop/Kids">KIDS</a><a href="#/shop/new">NEW ARRIVALS</a><a href="#/shop/offers">OFFERS</a><a href="#/wholesale">WHOLESALE</a></nav>
-<div class="ic"><button onclick="go('#/shop')" aria-label="Search">🔍</button><button onclick="go('#/shop/wish')" aria-label="Wishlist">♡ <span id="wc">0</span></button><button onclick="go('#/cart')" aria-label="Cart">🛍 <span id="cc">0</span></button></div></header>
+<div class="ic"><button onclick="go('#/shop')" aria-label="Search">🔍</button><button onclick="go('#/shop/wish')" aria-label="Wishlist">♡ <span id="wc">0</span></button><button onclick="go('#/cart')" aria-label="Cart">🛍 <span id="cc">0</span></button><button id="themeToggle" onclick="toggleTheme()" aria-label="Switch to dark theme" title="Switch to dark theme">☾</button></div></header>
 <div id="mnav"><a href="#/">Home</a><a href="#/shop">Shop</a><a href="#/shop/Men">Men</a><a href="#/shop/Women">Women</a><a href="#/shop/Kids">Kids</a><a href="#/shop/new">New Arrivals</a><a href="#/shop/offers">Offers</a><a href="#/wholesale">Wholesale</a><a href="#/store">Store Location</a><a href="#/about">About Us</a><a href="/admin/login">Admin Access</a></div>
 <main id="app"></main><div class="toast" id="toast"></div>
 <footer><div class="in"><div><b style="font-size:18px;letter-spacing:3px">ALANGAR</b><br>All Cloth Varieties · Wholesale &amp; Retail<br>Trichy Road, Near K.M.C.H. Hospital,<br>Sulur, Coimbatore - 641402, Tamil Nadu<br>📞 94434 20263 · 70923 68585<br>GSTIN: <span id="gst"></span><br>Mon–Sun 9:30 AM – 9:00 PM</div>
@@ -85,6 +86,10 @@ footer b{color:#e9d9b4}footer a{display:block;opacity:.85}
 const CFG={gstin:"33PXPRK3816C2ZT",phone:"94434 20263",phone2:"70923 68585",wa:"919443420263",ship:60,free:999};
 document.getElementById('gst').textContent=CFG.gstin;
 const $=s=>document.querySelector(s),app=$('#app'),mn=$('#mnav');
+function currentTheme(){return document.documentElement.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}
+function updateThemeToggle(){const dark=currentTheme()==='dark',button=$('#themeToggle'),label=`Switch to ${dark?'light':'dark'} theme`;button.textContent=dark?'☀':'☾';button.setAttribute('aria-label',label);button.title=label}
+function toggleTheme(){const theme=currentTheme()==='dark'?'light':'dark';document.documentElement.dataset.theme=theme;localStorage.setItem('alangar-theme',theme);updateThemeToggle()}
+updateThemeToggle();
 const COL={Ivory:'#d8cdb4',Maroon:'#7b2d3b',Navy:'#25364f',Olive:'#6b6b3a',Rose:'#c27c8a',Teal:'#2f6f6f',Mustard:'#b8892f',Black:'#2b2b2b',Sky:'#6d9bc3',Green:'#3f7a54',Peach:'#d99a7c',Grey:'#7a7a7a'};
 const SZ={Men:['S','M','L','XL','XXL'],Women:['S','M','L','XL','Free'],Kids:['2-3Y','4-5Y','6-7Y','8-9Y']};
 const raw=[
